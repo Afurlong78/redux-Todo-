@@ -28,6 +28,7 @@ const TodoContainer = styled.div`
   width:30%;
 
   color:white;
+  background-color:rgba(255, 255, 255, 0.2);
 
   display:flex;
   flex-direction:column;

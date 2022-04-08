@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { markTodoComplete } from '../features/removeTodoSlice';
 
 
+
 const Todo = styled.h3`
     font-size:1rem;
     color:black;
@@ -18,12 +19,26 @@ const Todo = styled.h3`
     padding:5px;
 `
 
+const backgrounds = {
+    'false': `rgb(236, 14, 14)`,
+    'true' : `rgb(40, 236, 14)`
+}
+
 
 const StyledBtn = styled.button`
     height: 2rem;
-    width:4rem;
+    width:auto;
 
-    background-color: 
+    background-color: ${(props)=>{
+        if(props.done === false ){
+            return backgrounds[props.done]
+        }else if (props.done === true){
+            return backgrounds[props.done]
+        }
+    }};
+
+    transition: 0.5s ease-in-out;
+
     color:black;
     border:none;
     border-radius:10px;
@@ -36,9 +51,8 @@ const TodoItem = ({ name, id, done }) =>{
     const dispatch = useDispatch();
 
     const markComplete = ( ) =>{ 
-        
         dispatch(markTodoComplete({
-            done: false
+            done: done
         }))
         console.log(done)
     }
@@ -46,7 +60,7 @@ const TodoItem = ({ name, id, done }) =>{
     return(
         <Todo>
             {name}
-            <StyledBtn onClick={markComplete}>
+            <StyledBtn done={done} onClick={markComplete}>
                 Complete
             </StyledBtn>
         </Todo>
