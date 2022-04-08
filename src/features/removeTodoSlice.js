@@ -10,7 +10,14 @@ const removeTodoSlice = createSlice({
   initialState,
   reducers: {
       markTodoComplete: (state, action)=>{
-        state.todoList()
+        switch(state.todoList.done){
+          case false : 
+            return state.todoList.done === true;
+          case true :
+            return state.todoList.done === false;
+          default : 
+            return state;
+        }
       }
   }
 });
