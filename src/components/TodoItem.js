@@ -38,9 +38,9 @@ const TodoItem = ({ name, id, done }) =>{
     const markComplete = ( ) =>{ 
         
         dispatch(markTodoComplete({
-            done: !done
+            done: false
         }))
-
+        console.log(done)
     }
 
     return(

@@ -6,24 +6,25 @@ const initialState = {
 }
 
 const removeTodoSlice = createSlice({
-  name: 'todos',
+  name: 'markTodo',
   initialState,
   reducers: {
       markTodoComplete: (state, action)=>{
-        switch(state.todoList.done){
-          case false : 
-            return state.todoList.done === true;
-          case true :
-            return state.todoList.done === false;
-          default : 
-            return state;
+        if(state.todoList.done === false){
+          return state.todoList.done === (!action.payload);
         }
+        // switch(state.todoList.done){
+        //   case false : 
+        //     return state.todoList.done === !action.payload;
+        //   case true :
+        //     return state.todoList.done === action.payload;
+        //   default : 
+        //     return state;
+        // }
       }
   }
 });
 
 export const { markTodoComplete } = removeTodoSlice.actions
-
-export const selectTodoList = state => state.todos.todoList
 
 export default removeTodoSlice.reducer
