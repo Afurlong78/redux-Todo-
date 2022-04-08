@@ -12,9 +12,6 @@ const todoSlice = createSlice({
       saveTodo: (state, action)=>{
           state.todoList.push(action.payload)
       },
-      removeTodo: (state, action)=>{
-        state.todoList.filter()
-      }
   }
 });
 

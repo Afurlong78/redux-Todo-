@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux'; 
+import { markTodoComplete } from '../features/removeTodoSlice';
 
 const Todo = styled.h3`
     font-size:1rem;
@@ -33,19 +34,22 @@ const StyledBtn = styled.button`
     font-weight:bold;
 `
 
-const TodoItem = ({name, done}) =>{
+const TodoItem = ({ name, id, done }) =>{
 
     const dispatch = useDispatch();
 
-    const removeTodo = ( ) =>{ 
-        dispatch()
+    const markComplete = ( ) =>{ 
+        
+        dispatch(markTodoComplete({
+            done: done
+        }))
 
     }
 
     return(
         <Todo>
             {name}
-            <StyledBtn>
+            <StyledBtn onClick={markComplete}>
                 Complete
             </StyledBtn>
         </Todo>

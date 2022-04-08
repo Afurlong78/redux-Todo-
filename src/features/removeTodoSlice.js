@@ -5,18 +5,18 @@ const initialState = {
     todoList: []
 }
 
-const todoSlice = createSlice({
+const removeTodoSlice = createSlice({
   name: 'todos',
   initialState,
   reducers: {
-      removeTodo: (state, action)=>{
-        state.todoList.filter()
+      markTodoComplete: (state, action)=>{
+        state.todoList()
       }
   }
 });
 
-export const { saveTodo } = todoSlice.actions
+export const { markTodoComplete } = removeTodoSlice.actions
 
 export const selectTodoList = state => state.todos.todoList
 
-export default todoSlice.reducer
+export default removeTodoSlice.reducer
