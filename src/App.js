@@ -1,57 +1,65 @@
 import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import styled from 'styled-components';
 import './App.css';
+import bg from './assets/bg.jpg';
+import InputComponent from './components/Input';
+import TodoItem from './components/TodoItem';
+
+import { useSelector } from 'react-redux';
+import { selectTodoList } from './features/todoSlice';
+
+const AppContainer = styled.div`
+  height:100vh;
+  width:100%;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  background-image:linear-gradient(hsla(0, 0%, 0%, 0.75), rgba(0, 0, 0, 0.1)),url(${bg});
+  background-size:cover;
+
+  color:white;
+  font-size:2rem;
+`
+
+const TodoContainer = styled.div`
+  height:50vh;
+  width:30%;
+
+  color:white;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+
+  overflow-y:auto;
+`
 
 function App() {
+
+  const todoList = useSelector(selectTodoList);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <AppContainer>
+      <InputComponent/>
+      {/* todoList */}
+        {/* completed/ yes or no */}
+      {/* Input */}
+
+      <TodoContainer>
+          {
+            todoList.map(item=>(
+              <TodoItem
+                name={item.item}
+                done={item.done}
+                id={item.id}
+              />
+            ))
+          }
+      </TodoContainer>
+    </AppContainer>
   );
 }
 
